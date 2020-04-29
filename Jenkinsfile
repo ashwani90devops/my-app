@@ -1,13 +1,13 @@
 
 node {
    // This is to demo github action	
-   def sonarUrl = 'sonar.host.url=http://172.31.30.136:9000'
-   def mvn = tool (name: 'maven3', type: 'maven') + '/bin/mvn'
+   def sonarUrl = 'sonar.host.url=http://192.168.147.149:9000'
+   def mvn = tool (name: 'jenkins-maven', type: 'maven') + '/bin/mvn'
    stage('SCM Checkout'){
     // Clone repo
 	git branch: 'master', 
-	credentialsId: 'github', 
-	url: 'https://github.com/javahometech/myweb'
+	credentialsId: 'ashwani90devops', 
+	url: 'https://github.com/ashwani90devops/my-app'
    
    }
    
@@ -45,7 +45,7 @@ node {
 							   Job Name: ${env.JOB_NAME}
 
 Thanks,
-DevOps Team""", cc: '', from: '', replyTo: '', subject: "${env.JOB_NAME} Success", to: 'hari.kammana@gmail.com'
+DevOps Team""", cc: '', from: '', replyTo: '', subject: "${env.JOB_NAME} Success", to: 'ashwani90devops@gmail.com'
    
    }
 }
