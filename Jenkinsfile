@@ -15,7 +15,7 @@ node {
    stage('Mvn Package'){
 	   // Build using maven
 	   
-	   sh "${mvn} clean package deploy"
+	   sh "${mvn} clean package"
    }
    
    stage('Email Notification'){
