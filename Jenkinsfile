@@ -22,6 +22,10 @@ node {
 		mail bcc: '', body: '''Hi Team,
 
 Build deployed successfully.
+${currentBuild.currentResult}
+${env.JOB_NAME}
+${env.BUILD_NUMBER}
+${env.BUILD_URL}
 
 Thanks,
 Ashwani Padhi''', cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job', to: 'ashwani90devops@gmail.com'
@@ -32,7 +36,7 @@ Ashwani Padhi''', cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job'
 	slackSend baseUrl: 'https://hooks.slack.com/services/',
 		channel: 'jenkins-ashwani-devops',
 		color: 'good',
-		message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+		message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} #${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
 		teamDomain: 'ashwani90devops.slack.com',
 		tokenCredentialId: 'jenkins-slack',
 		username: 'ashwani90devops@gmail.com'
