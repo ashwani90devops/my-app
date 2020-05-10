@@ -1,7 +1,7 @@
 
 node {
    // This is to demo github action	
-   def sonarUrl = 'sonar.host.url=http://192.168.147.149:9000'
+   def sonarUrl = 'sonar.host.url=http://192.168.1.2:9000'
    def mvn = tool (name: 'jenkins-maven', type: 'maven') + '/bin/mvn'
    stage('SCM Checkout'){
     // Clone repo
@@ -27,7 +27,7 @@ node {
    }
    
    stage('deploy-dev'){
-       def tomcatDevIp = '192.168.147.156'
+       def tomcatDevIp = '192.168.1.24'
 	   def tomcatHome = '/opt/tomcat8/'
 	   def webApps = tomcatHome+'webapps/'
 	   def tomcatStart = "${tomcatHome}bin/startup.sh"
@@ -40,7 +40,7 @@ node {
        }
    }
    stage('Email Notification'){
-		mail bcc: '', body: """Hi Team, You build successfully deployed
+		mail bcc: '', body: """Hi Team, Build is successfully deployed. Cheers !!!
 		                       Job URL : ${env.JOB_URL}
 							   Job Name: ${env.JOB_NAME}
 
