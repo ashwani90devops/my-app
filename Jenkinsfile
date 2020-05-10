@@ -19,7 +19,7 @@ node {
    }
    
    stage('Email Notification'){
-		mail bcc: '', body: '''Hi Team,
+		mail bcc: '', body: """Hi Team,
 
 Build deployed successfully.
 currentResult : ${currentBuild.currentResult}
@@ -28,7 +28,7 @@ BUILD_NUMBER : ${env.BUILD_NUMBER}
 BUILD_URL : ${env.BUILD_URL}
 
 Thanks,
-Ashwani Padhi''', cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job', to: 'ashwani90devops@gmail.com'
+Ashwani Padhi""", cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job', to: 'ashwani90devops@gmail.com'
    
    }
    
