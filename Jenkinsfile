@@ -22,10 +22,10 @@ node {
 		mail bcc: '', body: '''Hi Team,
 
 Build deployed successfully.
-${currentBuild.currentResult}
-${env.JOB_NAME}
-${env.BUILD_NUMBER}
-${env.BUILD_URL}
+currentResult : ${currentBuild.currentResult}
+JOB_NAME : ${env.JOB_NAME}
+BUILD_NUMBER : ${env.BUILD_NUMBER}
+BUILD_URL : ${env.BUILD_URL}
 
 Thanks,
 Ashwani Padhi''', cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job', to: 'ashwani90devops@gmail.com'
