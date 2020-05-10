@@ -1,7 +1,7 @@
 node {
    // This is to demo github action	
    def sonarUrl = 'sonar.host.url=http://192.168.1.2:9000'
-   def mvn = tool (name: 'maven-jenkins', type: 'maven') + '/bin/mvn'
+   def mvn = tool (name: 'jenkins-maven', type: 'maven') + '/bin/mvn'
 
 
    stage('SCM Checkout'){
@@ -21,10 +21,10 @@ node {
    stage('Email Notification'){
 		mail bcc: '', body: '''Hi Team,
 
-        Build deployed successfully.
+Build deployed successfully.
 
-        Thanks,
-        Ashwani Kumar Padhi''', cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job', to: 'ashwani90devops@gmail.com'
+Thanks,
+Ashwani Padhi''', cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job', to: 'ashwani90devops@gmail.com'
    
    }
 }
