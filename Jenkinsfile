@@ -29,7 +29,13 @@ Ashwani Padhi''', cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job'
    }
    
    stage('Slack Notification'){
-	slackSend baseUrl: 'https://hooks.slack.com/services/', channel: 'jenkins-ashwani-devops', color: 'good', message: 'Welcome to Jenkins, Slack!!!', teamDomain: 'ashwani90devops.slack.com', tokenCredentialId: 'jenkins-slack', username: 'ashwani90devops@gmail.com'
+	slackSend baseUrl: 'https://hooks.slack.com/services/',
+		channel: 'jenkins-ashwani-devops',
+		color: 'good',
+		message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+		teamDomain: 'ashwani90devops.slack.com',
+		tokenCredentialId: 'jenkins-slack',
+		username: 'ashwani90devops@gmail.com'
    }
 	
 }
