@@ -13,9 +13,9 @@ node {
    }
 	
    stage('SonarQube Analysis'){
-	   withCredentials([string(credentialsId: 'sonarToken', variable: 'sonarqube')]) {
-        def sonarcube = "sonar.login=${sonarcube}"
-        sh "${mvn} sonar:sonar -D${sonarUrl}  -D${sonarqube}"
+	   withCredentials([string(credentialsId: 'sonarqube', variable: 'sonarToken')]) {
+        def sonarToken = "sonar.login=${sonarToken}"
+        sh "${mvn} sonar:sonar -D${sonarUrl}  -D${sonarTokene}"
 	 }
       
    }
