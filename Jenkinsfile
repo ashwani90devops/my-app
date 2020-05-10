@@ -11,6 +11,12 @@ node {
 	url: 'https://github.com/ashwani90devops/my-app'
    
    }
+		
+   stage('MVN Package'){
+	   // Build using maven
+	   
+	   sh "${mvn} clean package"
+   }
 	
    stage('SonarQube Analysis'){
 	   withCredentials([string(credentialsId: 'sonarToken', variable: 'sonarToken')]) {
@@ -18,13 +24,8 @@ node {
         sh "${mvn} sonar:sonar -D${sonarUrl}  -D${sonarToken}"
 	 }
       
-   }
-	
-   stage('MVN Package'){
-	   // Build using maven
-	   
-	   sh "${mvn} clean package"
-   }
+   }	
+   	
    
    stage('E-mail Notification'){
 		mail bcc: '', body: """Hi Team,
