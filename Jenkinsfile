@@ -19,9 +19,9 @@ node {
    }
 	
    stage('SonarQube Analysis'){
-	   withCredentials([string(credentialsId: 'sonarToken', variable: 'sonarToken')]) {
-        def sonarToken = "sonar.login=${sonarToken}"
-        sh "${mvn} sonar:sonar -D${sonarUrl}  -D${sonarToken}"
+	   def mvnHome =  tool name: 'maven-jenkins', type: 'maven'
+           withSonarQubeEnv('sonarqube') { 
+             sh "${mvnHome}/bin/mvn sonar:sonar"
 	 }
       
    }	
