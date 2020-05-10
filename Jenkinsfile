@@ -20,7 +20,7 @@ node {
 	
    stage('SonarQube Analysis'){
            withSonarQubeEnv('sonarqube') { 
-             sh "${mvn} sonar:sonar"
+             sh "${mvn} -B org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar"
 	 }
       
    }	
