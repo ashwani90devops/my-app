@@ -29,7 +29,7 @@ Ashwani Padhi''', cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job'
    }
    
    stage('Slack Notification'){
-	slackSend channel: 'jenkins-ashwani-devops', color: 'good', message: 'Welcome to Jenkins, Slack!!!', teamDomain: 'ashwani90devops.slack.com', tokenCredentialId: 'jenkins-slack'
+	slackSend baseUrl: 'https://hooks.slack.com/services/', channel: 'jenkins-ashwani-devops', color: 'good', message: 'Welcome to Jenkins, Slack!!!', teamDomain: 'ashwani90devops.slack.com', tokenCredentialId: 'jenkins-slack', username: 'ashwani90devops@gmail.com'
    }
 	
 }
