@@ -1,5 +1,5 @@
 node {
-   // This is to demo github action	
+   // Defining variable	
    def sonarUrl = 'sonar.host.url=http://192.168.1.2:9000'
    def mvn = tool (name: 'maven-jenkins', type: 'maven') + '/bin/mvn'
 
@@ -12,7 +12,7 @@ node {
    
    }
 	
-   stage('Sonar Publish'){
+   stage('SonarQube Analysis'){
 	   withCredentials([string(credentialsId: 'sonarqube', variable: 'sonarToken')]) {
         def sonarToken = "sonar.login=${sonarToken}"
         sh "${mvn} sonar:sonar -D${sonarUrl}  -D${sonarToken}"
@@ -20,13 +20,13 @@ node {
       
    }
 	
-   stage('Mvn Package'){
+   stage('MVN Package'){
 	   // Build using maven
 	   
 	   sh "${mvn} clean package"
    }
    
-   stage('Email Notification'){
+   stage('E-mail Notification'){
 		mail bcc: '', body: """Hi Team,
 
 Build deployed successfully.
