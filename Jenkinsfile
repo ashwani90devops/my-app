@@ -21,6 +21,10 @@ node {
    stage('SonarQube Analysis'){
            withSonarQubeEnv('sonarqube') { 
              sh "${mvn} sonar:sonar"
+		   mvn sonar:sonar \
+ 			 -Dsonar.projectKey=my-app \
+ 			 -Dsonar.host.url=http://192.168.1.2:9000 \
+		         -Dsonar.login=99d5314cf7bbcc86308f4ce140c2c1ef614c2746
 	 }
       
    }	
