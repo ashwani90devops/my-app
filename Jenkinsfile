@@ -24,7 +24,7 @@ node {
         Build deployed successfully.
 
         Thanks,
-        Ashwani Kumar Padhi''', cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job', to: 'ashwani90devop@gmail.com'
+        Ashwani Kumar Padhi''', cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job', to: 'ashwani90devops@gmail.com'
    
    }
 }
