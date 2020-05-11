@@ -19,7 +19,7 @@ node {
    }
 	
    stage('SonarQube Analysis'){
-           withSonarQubeEnv('sonar1') { 
+           withSonarQubeEnv('sonar') { 
              sh "${mvn} sonar:sonar"
 	 }
       
@@ -43,7 +43,7 @@ Ashwani Padhi""", cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job'
    stage('Slack Notification'){
 	slackSend baseUrl: 'https://hooks.slack.com/services/',
 		channel: 'jenkins-ashwani-devops',
-		color: 'danger',
+		color: 'good',
 		message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} #${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
 		teamDomain: 'ashwani90devops.slack.com',
 		tokenCredentialId: 'jenkins-slack',
