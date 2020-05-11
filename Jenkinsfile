@@ -47,7 +47,7 @@ Ashwani Padhi""", cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job'
 		message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} #${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
 		teamDomain: 'ashwani90devops.slack.com',
 		tokenCredentialId: 'jenkins-slack',
-		username: 'ashwani90devops@gmail.com'
+		username: 'jenkins'
    }               
 	
 }
