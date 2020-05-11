@@ -43,8 +43,6 @@ Ashwani Padhi""", cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job'
    stage('Slack Notification'){
 	slackSend baseUrl: 'https://hooks.slack.com/services/',
 		channel: 'jenkins-ashwani-devops',
-		color: 'good',
-		color: 'warning',
 		color: 'danger',
 		message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} #${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
 		teamDomain: 'ashwani90devops.slack.com',
