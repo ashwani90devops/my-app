@@ -24,7 +24,21 @@ node {
 	 }
       
    }	
-   	
+    stage("Quality Gate Statuc Check"){
+          timeout(time: 1, unit: 'HOURS') {
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+                   slackSend baseUrl: 'https://hooks.slack.com/services/',
+                   channel: '#jenkins-ashwani-devops',
+                   color: 'danger', 
+                   message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} #${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", 
+                   teamDomain: 'ashwani90devops.slack.com',
+                   tokenCredentialId: 'jenkins-slack',
+	           username: 'jenkins'
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              }
+          }
+      }    	
    
    stage('E-mail Notification'){
 		mail bcc: '', body: """Hi Team,
@@ -42,7 +56,7 @@ Ashwani Padhi""", cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job'
    
    stage('Slack Notification'){
 	slackSend baseUrl: 'https://hooks.slack.com/services/',
-		channel: 'jenkins-ashwani-devops',
+		channel: '#jenkins-ashwani-devops',
 		color: 'good',
 		message: "*${currentBuild.currentResult}:* ${env.JOB_NAME} #${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
 		teamDomain: 'ashwani90devops.slack.com',
