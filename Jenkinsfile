@@ -39,8 +39,22 @@ node {
               }
           }
       }    	
+	
+    stage('deploy-dev'){
+       def tomcatDevIp = '192.68.1.24'
+	   def tomcatHome = '/opt/tomcat8/'
+	   def webApps = tomcatHome+'webapps/'
+	   def tomcatStart = "${tomcatHome}bin/startup.sh"
+	   def tomcatStop = "${tomcatHome}bin/shutdown.sh"
+	   
+	   sshagent (credentials: ['tomcat-dev']) {
+	      sh "scp -o StrictHostKeyChecking=no target/myweb*.war root@${tomcatDevIp}:${webApps}myweb.war"
+          sh "ssh ec2-user@${tomcatDevIp} ${tomcatStop}"
+		  sh "ssh ec2-user@${tomcatDevIp} ${tomcatStart}"
+       }
+   }
    
-   stage('E-mail Notification'){
+    stage('E-mail Notification'){
 		mail bcc: '', body: """Hi Team,
 
 Build deployed successfully.
@@ -54,7 +68,7 @@ Ashwani Padhi""", cc: '', from: '', replyTo: '', subject: 'Pipeline Jenkins Job'
    
    }
    
-   stage('Slack Notification'){
+    stage('Slack Notification'){
 	slackSend baseUrl: 'https://hooks.slack.com/services/',
 		channel: '#jenkins-ashwani-devops',
 		color: 'good',
