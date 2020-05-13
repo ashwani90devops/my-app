@@ -49,8 +49,8 @@ node {
 	   
 	   sshagent (credentials: ['tomcat-dev']) {
 	      sh "scp -o StrictHostKeyChecking=no target/myweb*.war root@${tomcatDevIp}:${webApps}myweb.war"
-          sh "ssh ec2-user@${tomcatDevIp} ${tomcatStop}"
-		  sh "ssh ec2-user@${tomcatDevIp} ${tomcatStart}"
+          sh "ssh root@${tomcatDevIp} ${tomcatStop}"
+		  sh "ssh root@${tomcatDevIp} ${tomcatStart}"
        }
    }
    
