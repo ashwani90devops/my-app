@@ -40,18 +40,11 @@ node {
           }
       }    	
 	
-    stage('deploy-dev'){
-       def tomcatDevIp = '192.168.1.24'
-	   def tomcatHome = '/opt/tomcat8/'
-	   def webApps = tomcatHome+'webapps/'
-	   def tomcatStart = "${tomcatHome}bin/startup.sh"
-	   def tomcatStop = "${tomcatHome}bin/shutdown.sh"
-	   
-	   sshagent (credentials: ['tomcat-dev']) {
-	      sh "scp -o StrictHostKeyChecking=no target/myweb*.war root@${tomcatDevIp}:${webApps}myweb.war"
-          sh "ssh root@${tomcatDevIp} ${tomcatStop}"
-		  sh "ssh root@${tomcatDevIp} ${tomcatStart}"
-       }
+    stage('Deploy to Tomcat'){
+      
+      sshagent(['tomcat-dev']) {
+         sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@172.31.29.242:/opt/tomcat8/webapps/'
+      }
    }
    
     stage('E-mail Notification'){
