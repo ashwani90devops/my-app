@@ -52,8 +52,7 @@ node {
 			sh "${copyWar}"
 			sh "${startTomcat}"
 	   }
-   }
-}
+    }
    
     stage('E-mail Notification'){
 		mail bcc: '', body: """Hi Team,
