@@ -2,7 +2,11 @@ node {
    // Defining variable	
    def sonarUrl = 'sonar.host.url=http://192.168.1.2:9000'
    def mvn = tool (name: 'maven-jenkins', type: 'maven') + '/bin/mvn'
-
+   def tomcatIp = '192.168.1.24'
+   def tomcatUser = 'root'
+   def stopTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/apache-tomcat-8.5.24/bin/shutdown.sh"
+   def startTomcat = "ssh ${tomcatUser}@${tomcatIp} /opt/tomcat8/apache-tomcat-8.5.24/bin/startup.sh"
+   def copyWar = "scp -o StrictHostKeyChecking=no target/myweb.war ${tomcatUser}@${tomcatIp}:/opt/tomcat8/apache-tomcat-8.5.24/webapps/"
 
    stage('SCM Checkout'){
     // Clone repo
@@ -40,12 +44,16 @@ node {
           }
       }    	
 	
-    stage('Deploy to Tomcat'){
-      
-      sshagent(['tomcat-dev']) {
-         sh 'scp -o StrictHostKeyChecking=no target/*.war root@192.168.1.24:/opt/tomcat8/apache-tomcat-8.5.24/webapps/'
-      }
+    stage('Deploy Dev'){
+	   sh 'mv target/myweb*.war target/myweb.war' 
+	   
+       sshagent(['tomcat-dev']) {
+			sh "${stopTomcat}"
+			sh "${copyWar}"
+			sh "${startTomcat}"
+	   }
    }
+}
    
     stage('E-mail Notification'){
 		mail bcc: '', body: """Hi Team,
