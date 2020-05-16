@@ -43,7 +43,7 @@ node {
 	deploy adapters: [tomcat8(credentialsId: 'deployer', path: '', url: 'http://192.168.1.24:8080/')], 
 		contextPath: null, 
 		onFailure: false, 
-		war: '**.*/war'
+		war: '/var/jenkins_home/workspace/03-Freestyle-Jenkins-Pipeline-Job/target/*.war'
     }
    
     stage('E-mail Notification'){
