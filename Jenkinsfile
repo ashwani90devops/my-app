@@ -40,7 +40,7 @@ node {
       }    	
 	
     stage('Deploy Dev'){
-	deploy adapters: [tomcat8(credentialsId: 'deployer', path: '', url: 'http://192.168.1.13:8080/')], 
+	deploy adapters: [tomcat8(credentialsId: 'deployer', path: '', url: 'http://192.168.1.11:8080/')], 
 		contextPath: null, 
 		onFailure: false, 
 		war: "**/*.war"
