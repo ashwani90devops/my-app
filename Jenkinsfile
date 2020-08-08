@@ -1,6 +1,6 @@
 node {
    // Defining variable	
-   def sonarUrl = 'sonar.host.url=http://192.168.1.4:9000'
+   def sonarUrl = 'sonar.host.url=http://192.168.1.14:9000'
    def mvn = tool (name: 'maven-jenkins', type: 'maven') + '/bin/mvn'
    
    stage('SCM Checkout'){
@@ -41,7 +41,7 @@ node {
 	
     stage('Deploy Dev'){
 	echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"    
-	deploy adapters: [tomcat8(credentialsId: 'deployer', path: '', url: 'http://192.168.1.16:8080/')], 
+	deploy adapters: [tomcat8(credentialsId: 'deployer', path: '', url: 'http://192.168.1.6:8080/')], 
 		contextPath: null, 
 		onFailure: false, 
 		war: "**/*.war"
