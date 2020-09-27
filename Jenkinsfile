@@ -41,7 +41,7 @@ node {
 	
     stage('Deploy Dev'){
 	echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"    
-	deploy adapters: [tomcat8(credentialsId: 'deployer', path: '', url: 'http://192.168.1.25:8080/')], 
+	deploy adapters: [tomcat8(credentialsId: 'deployer', path: '', url: 'http://34.207.253.153:8080/')], 
 		contextPath: null, 
 		onFailure: false, 
 		war: "**/*.war"
