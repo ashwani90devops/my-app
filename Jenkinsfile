@@ -1,6 +1,5 @@
 node {
    // Defining variable	
-   def sonarUrl = 'sonar.host.url=http://192.168.1.16:9000'
    def mvn = tool (name: 'maven-jenkins', type: 'maven') + '/bin/mvn'
    
    stage('SCM Checkout'){
