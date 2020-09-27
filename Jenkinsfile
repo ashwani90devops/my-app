@@ -16,8 +16,7 @@ node {
 	   sh "${mvn} clean package"
    }
 	
-    stage('Deploy Dev'){
-	echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"    
+    stage('Deploy Dev'){   
 	deploy adapters: [tomcat8(credentialsId: 'deployer', path: '', url: 'http://52.87.252.45:8080/')], 
 		contextPath: null, 
 		onFailure: false, 
